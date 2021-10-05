@@ -51,11 +51,11 @@ public class Jeopardy implements ActionListener {
 		frame.setLayout(new BorderLayout());
 
 		// 1. Make the frame show up
-
+frame.setVisible(true);
 		// 2. Give your frame a title
-
+frame.setTitle("Za Jeopardy Frame");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
-
+JPanel p = new JPanel();
 		// 4. Add the header component to the quizPanel
 
 		// 5. Add the quizPanel to the frame
