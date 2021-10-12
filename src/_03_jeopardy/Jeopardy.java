@@ -56,23 +56,28 @@ frame.setVisible(true);
 frame.setTitle("Za Jeopardy Frame");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
 JPanel p = new JPanel();
-		// 4. Add the header component to the quizPanel
-
+frame.add(p);
+frame.add(quizPanel);
+frame.pack();
+// 4. Add the header component to the quizPanel
+quizPanel.add(createHeader("Insert proper header HERE"));
 		// 5. Add the quizPanel to the frame
 
 		// 6. Use the createButton method to set the value of firstButton
-
+firstButton = createButton("$200");
 		// 7. Add the firstButton to the quizPanel
-
+quizPanel.add(firstButton);
 		// 8. Write the code to complete the createButton() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
 
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
-
+secondButton = createButton ("$400");
+quizPanel.add(secondButton);
 		// 10. Add the secondButton to the quizPanel
-
-		// 11. Add action listeners to the buttons (2 lines of code)
+firstButton.addActionListener(this);
+secondButton.addActionListener(this);
+// 11. Add action listeners to the buttons (2 lines of code)
 
 		// 12. Write the code to complete the actionPerformed() method below
 
@@ -94,24 +99,29 @@ JPanel p = new JPanel();
 	private JButton createButton(String dollarAmount) {
 		
 		// Create a new JButton
-
+JButton jb = new JButton();
 		// Set the text of the button to the dollarAmount
-
+jb.setText(dollarAmount);
 		// Increment the buttonCount (this should make the layout vertical)
-
+buttonCount +=1;
 		// Return your new button instead of the temporary button
 
-		return new JButton("temporary button");
+		return jb;
+
 	}
+
 
 	public void actionPerformed(ActionEvent e) {
 		
 		// Remove this temporary message after testing:
-		JOptionPane.showMessageDialog(null, "pressed " + ((JButton) e.getSource()).getText() + " button");
+
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
+if (buttonPressed == firstButton) {
+askQuestion ("9x + √16 + (9•5) = 319. Solve for x.", "30", 200);	
 
+}
 			// Call the askQuestion() method
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
@@ -129,13 +139,21 @@ JPanel p = new JPanel();
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
 		
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
+		String answer1 = JOptionPane.showInputDialog(question);
 		
 		// Stop the theme music when they have entered their response. 
 		
 		// If the answer is correct
-
-			// Increase the score by the prizeMoney
+if (answer1.equals(correctAnswer)) {
+	score += prizeMoney;
+	JOptionPane.showMessageDialog(null, "correct");
+}
+else {
+	score -= prizeMoney;
+	JOptionPane.showMessageDialog(null, "Incorrect, the correct answer is " + correctAnswer);
+}
+		
+// Increase the score by the prizeMoney
 
 			// Pop up a message to tell the user they were correct
 
@@ -146,7 +164,7 @@ JPanel p = new JPanel();
 			// Pop up a message to tell the user they were wrong and give them the correct answer
 
 		// Call the updateScore() method
-
+updateScore();
 	}
 
 	public void playJeopardyTheme() {
