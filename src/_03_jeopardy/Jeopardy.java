@@ -35,7 +35,7 @@ import javax.swing.JPanel;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -60,7 +60,7 @@ frame.add(p);
 frame.add(quizPanel);
 frame.pack();
 // 4. Add the header component to the quizPanel
-quizPanel.add(createHeader("Insert proper header HERE"));
+quizPanel.add(createHeader("Jeopardy"));
 		// 5. Add the quizPanel to the frame
 
 		// 6. Use the createButton method to set the value of firstButton
@@ -74,9 +74,23 @@ quizPanel.add(firstButton);
 		// method
 secondButton = createButton ("$400");
 quizPanel.add(secondButton);
+
+thirdButton = createButton ("$600");
+quizPanel.add(thirdButton);
+
+fourthButton = createButton ("$800");
+quizPanel.add(fourthButton);
+
+fifthButton = createButton ("$1000");
+quizPanel.add(fifthButton);
+
 		// 10. Add the secondButton to the quizPanel
 firstButton.addActionListener(this);
 secondButton.addActionListener(this);
+thirdButton.addActionListener(this);
+fourthButton.addActionListener(this);
+fifthButton.addActionListener(this);
+frame.pack();
 // 11. Add action listeners to the buttons (2 lines of code)
 
 		// 12. Write the code to complete the actionPerformed() method below
@@ -119,8 +133,19 @@ buttonCount +=1;
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
 if (buttonPressed == firstButton) {
-askQuestion ("9x + √16 + (9•5) = 319. Solve for x.", "30", 200);	
-
+askQuestion ("What came first? The Cretatious, Triassic, or Jurassic period?", "Triassic", 200);	
+}
+if (buttonPressed == secondButton) {
+askQuestion ("9x + √16 + (9•5) = 319. Solve for x.", "30", 400);	
+}
+if (buttonPressed == thirdButton) {
+askQuestion ("Which of the following is an insect: Scorpion, Butterfly, Spider, Crab, or Centipede?", "Butterfly", 600);
+}
+if (buttonPressed == fourthButton) {
+askQuestion ("What is the answer to life, the universe, and everything?", "42", 800);	
+}
+if (buttonPressed == fifthButton) {
+askQuestion ("Muahahahaha, only I know the answer!", "...you'll never know!", 1000);	
 }
 			// Call the askQuestion() method
  
@@ -137,7 +162,7 @@ askQuestion ("9x + √16 + (9•5) = 319. Solve for x.", "30", 200);
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
-		
+		playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
 		String answer1 = JOptionPane.showInputDialog(question);
 		
@@ -145,10 +170,12 @@ askQuestion ("9x + √16 + (9•5) = 319. Solve for x.", "30", 200);
 		
 		// If the answer is correct
 if (answer1.equals(correctAnswer)) {
+	stopJeopardyTheme();
 	score += prizeMoney;
 	JOptionPane.showMessageDialog(null, "correct");
 }
 else {
+	stopJeopardyTheme();
 	score -= prizeMoney;
 	JOptionPane.showMessageDialog(null, "Incorrect, the correct answer is " + correctAnswer);
 }
