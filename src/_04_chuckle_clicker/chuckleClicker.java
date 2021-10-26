@@ -34,14 +34,13 @@ public class chuckleClicker implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		JButton buttonPressed = (JButton) e.getSource();
-		
-		if (buttonPressed == b1) {
-			
+
+		if (e.getSource() == b1) {
+		JOptionPane.showMessageDialog(null, " ... ");	
 		}
 	
-if (buttonPressed == b2) {
-			
+if (e.getSource() ==b2) {
+	JOptionPane.showMessageDialog(null, "Rectum nearly killed him!");				
 }	
 }
 
