@@ -52,15 +52,45 @@ System.out.println(mouseX + " " + mouseY);
    	 int secretLocationY = 220;
    	 /** If the mouse co-ordinates and secret location are close, we'll let them ask a question. */
    	 if (areClose(mouseX, secretLocationX) && areClose(mouseY, secretLocationY)) {
+   		 play("creepy-noise.wav");
    		 // 8. Find a spooky sound and put it in your _07_fortune_teller package (freesound.org)
    		 // play("src/_07_fortune_teller/creepy-noise.wav");
    		 // 9. Play the sound
          
    		 // 10. Insert your completed Magic 8 ball code here
+   		int ran = new Random().nextInt(4);
+   		int errorNumber = new Random().nextInt(2000);
+   			// 3. Print out this variable
+   		System.out.println(ran);
+   			// 4. Get the user to enter a question for the 8 ball
+   		JOptionPane.showInputDialog("Ask a yes-or-no question for the magic 8 ball to answer");
+   			// 5. If the random number is 0
+   		if (ran == 0) {
+   			JOptionPane.showMessageDialog(null, "No");
+   		}
+   			// -- tell the user "Yes"
 
+   			// 6. If the random number is 1
+   		else if (ran == 1) {
+   			JOptionPane.showMessageDialog(null, "Yes");
+   		}
+   			// -- tell the user "No"
+
+   			// 7. If the random number is 2
+   		else if (ran == 2) {
+   			JOptionPane.showMessageDialog(null, "Maybe you should ask Google?");
+   		}
+   			// -- tell the user "Maybe you should ask Google?"
+
+   			// 8. If the random number is 3
+   		else if (ran == 3) {
+   			JOptionPane.showMessageDialog(null, "Error#" + errorNumber);
+   		}
+   			// -- write your own answer
+   		}
    	 }
 
-    }
+    
 
     private boolean areClose(int mouseX, int secretLocationX) {
    	 return mouseX < secretLocationX + 15 && mouseX > secretLocationX - 15;
